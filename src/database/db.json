@@ -1,0 +1,29 @@
+{
+    "data": {
+        "keyPIX": "00000000000",
+        "socialNetwork": [
+            {
+                "type": "",
+                "value": "",
+                "link": ""
+            }
+        ],
+        "contacts": [
+            {
+                "type": "",
+                "value": "",
+                "link": ""
+            }
+        ]
+    },
+    "categories": [
+        "Todos"
+    ],
+    "items": [
+        {
+            "name": "",
+            "price": 0,
+            "category": 0
+        }
+    ]
+}
