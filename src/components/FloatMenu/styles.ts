@@ -149,6 +149,59 @@ export const BoxDescription = styled.span`
     cursor: pointer;
 `
 
+export const BoxDescriptionSimulation = styled.div`
+    width: 600px;
+    display: flex;
+`
+
+export const BoxSimulationListItens = styled.div`
+    background-color: #f1f1f1;
+    max-height: 400px;
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+`
+
+export const BoxSimulationItem = styled.div`
+    background-color: lightgray;
+    margin-bottom: 10px;
+    padding: 5px;
+    border-radius: 5px;
+
+    button {
+        margin: 0 5px;
+    }
+`
+
+export const BoxSimulationListItensInProcess = styled.div`
+    background-color: #f1f1f1;
+    max-height: 400px;
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+
+    display: flex;
+    flex-direction: column;
+
+    div {
+        flex: 1;
+        padding: 10px;
+    }
+`
+
+export const BoxSimulationItemInProcess = styled.div`
+    background-color: lightgray;
+    margin-bottom: 10px;
+    padding: 5px;
+    border-radius: 5px;
+
+    border: 1px solid #fff;
+
+    button {
+        width: 100%;
+    }
+`
+
 export const BoxButtonClipboard = styled.input`
     margin-left: 10px;
     border: none;
