@@ -164,42 +164,87 @@ export const BoxDescriptionSimulation = styled.div`
     }
 
     @media (max-width: 768px) {
-        width: 90%;
+        width: 100%;
     }
 `
 
 export const BoxSimulationListItens = styled.div`
     background-color: #f1f1f1;
+    min-height: 200px;
     max-height: 400px;
     flex: 1;
     overflow-y: auto;
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
 `
 
 export const BoxSimulationItem = styled.div`
     background-color: lightgray;
     margin-bottom: 10px;
-    padding: 5px;
+    box-sizing: border-box;
     border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    box-sizing: border-box;
 
     button {
         margin: 0 5px;
+        background-color: ${secundaryColor};
+    }
+
+    div {
+        display: flex;
+        align-items: center;
+    }
+
+    div:nth-child(2) {
+        flex: 1;
+        
+        @media (max-width: 768px) {
+            display: flex;
+            flex-direction: column;
+
+            button {
+                margin-top: 10px;
+            }
+        }
     }
 `
 
 export const BoxSimulationListItensInProcess = styled.div`
     background-color: #f1f1f1;
+    min-height: 200px;
     max-height: 400px;
     flex: 1;
     overflow-y: auto;
     padding: 10px;
+    box-sizing: border-box;
 
     display: flex;
     flex-direction: column;
 
+    button {
+        background-color: ${primaryColor};
+    }
+
+    div:nth-child(1) {
+        display: flex;
+        flex-direction: column;
+    }
+
+    div:nth-child(2) {
+        display: flex;
+        flex-direction: column;
+    }
+
     div {
         flex: 1;
         padding: 10px;
+        box-sizing: border-box;
     }
 `
 
@@ -208,11 +253,15 @@ export const BoxSimulationItemInProcess = styled.div`
     margin-bottom: 10px;
     padding: 5px;
     border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
 
     border: 1px solid #fff;
 
     button {
         width: 100%;
+        background-color: ${secundaryColor};
     }
 `
 
@@ -240,10 +289,14 @@ export const ButtonTabSimulation = styled.div<IButtonTabSimulation>`
     flex: 1;
     background: lightgray;
     border-radius: 0;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
 
 
     ${props => !!props.selected && css`
-        background-color: gray;
+        background-color: ${primaryColor};
         color: #fff;
     `}
 

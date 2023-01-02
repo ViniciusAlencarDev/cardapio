@@ -79,8 +79,15 @@ export default function FloatMenu() {
 
 
     function addItemForListInProcess(itemPosition: number) {
+        if (itemsInProcess.find((item: any) => item.name === items[itemPosition].name)) {
+            alert('Item já adicionado. Remová-o para alterá-lo');
+            return;
+        }
+
         setItemsInProcess((itemsInProcess: any) => {
-            return [...itemsInProcess, items[itemPosition]]
+            return [...itemsInProcess, {
+                ...items[itemPosition]
+            }]
         })
 
         forceUpdate()
@@ -159,45 +166,47 @@ Totalizando em ${itemsInProcess.reduce((total: number, current: any) => total +=
                                 <Styles.BoxDescriptionSimulation>
                                     <div>
                                         <Styles.ButtonTabSimulation selected={!boxSimulationSelected} onClick={() => setBoxSimulationSelected(false)}>Itens</Styles.ButtonTabSimulation>
-                                        <Styles.ButtonTabSimulation selected={boxSimulationSelected} onClick={() => setBoxSimulationSelected(true)}>Lista</Styles.ButtonTabSimulation>
+                                        <Styles.ButtonTabSimulation selected={boxSimulationSelected} onClick={() => setBoxSimulationSelected(true)}>Lista ({itemsInProcess.length})</Styles.ButtonTabSimulation>
                                     </div>
                                     {
                                         !boxSimulationSelected
-                                        ?
-                                        <Styles.BoxSimulationListItens>
-                                            {
-                                                items.map((item: any, itemKey: any) => (
-                                                    <Styles.BoxSimulationItem key={itemKey}>
-                                                        <span>{item.name} ({item.price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })})</span>
-                                                        <div>
-                                                            <button onClick={() => changeValueTiem(itemKey, -1)}>-</button>
-                                                            <span>{item.amount}</span>
-                                                            <button onClick={() => changeValueTiem(itemKey, +1)}>+</button>
-                                                            <button onClick={() => addItemForListInProcess(itemKey)}>Adicionar</button>
-                                                        </div>
-                                                    </Styles.BoxSimulationItem>
-                                                ))
-                                            }
-                                        </Styles.BoxSimulationListItens>
-                                        :
-                                        <Styles.BoxSimulationListItensInProcess>
-                                            <div>
+                                            ?
+                                            <Styles.BoxSimulationListItens>
                                                 {
-                                                    itemsInProcess.map((item: any, itemKey: any) => (
-                                                        <Styles.BoxSimulationItemInProcess key={itemKey}>
-                                                            <span>{item.name} ({item.amount} x {item.price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })})</span>
-                                                            <button onClick={() => removeItemForListInProcess(itemKey)}>Remover</button>
-                                                        </Styles.BoxSimulationItemInProcess>
+                                                    items.map((item: any, itemKey: any) => (
+                                                        <Styles.BoxSimulationItem key={itemKey}>
+                                                            <div>{item.name} ({item.price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })})</div>
+                                                            <div>
+                                                                <div>
+                                                                    <button onClick={() => changeValueTiem(itemKey, -1)}>-</button>
+                                                                    <span>{item.amount}</span>
+                                                                    <button onClick={() => changeValueTiem(itemKey, +1)}>+</button>
+                                                                </div>
+                                                                <button onClick={() => addItemForListInProcess(itemKey)}>Adicionar</button>
+                                                            </div>
+                                                        </Styles.BoxSimulationItem>
                                                     ))
                                                 }
-                                            </div>
-                                            <div>
-                                                <span>Total: {itemsInProcess.reduce((total: number, current: any) => total += (current.price * current.amount), 0).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</span>
-                                                <button onClick={sendMessageListInProcess}>Pedir no whatsapp</button>
-                                            </div>
-                                        </Styles.BoxSimulationListItensInProcess>
+                                            </Styles.BoxSimulationListItens>
+                                            :
+                                            <Styles.BoxSimulationListItensInProcess>
+                                                <div>
+                                                    {
+                                                        itemsInProcess.map((item: any, itemKey: any) => (
+                                                            <Styles.BoxSimulationItemInProcess key={itemKey}>
+                                                                <span>{item.name} ({item.amount} x {item.price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })})</span>
+                                                                <button onClick={() => removeItemForListInProcess(itemKey)}>Remover</button>
+                                                            </Styles.BoxSimulationItemInProcess>
+                                                        ))
+                                                    }
+                                                </div>
+                                                <div>
+                                                    <span>Total: {itemsInProcess.reduce((total: number, current: any) => total += (current.price * current.amount), 0).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</span>
+                                                    <button disabled={itemsInProcess.length === 0} onClick={sendMessageListInProcess}>Pedir no whatsapp</button>
+                                                </div>
+                                            </Styles.BoxSimulationListItensInProcess>
                                     }
-                                    
+
                                 </Styles.BoxDescriptionSimulation>
                             </Styles.Box>
                         </>
