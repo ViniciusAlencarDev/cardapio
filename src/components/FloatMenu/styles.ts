@@ -14,6 +14,10 @@ interface IButton {
     activate: boolean;
 }
 
+interface IButtonTabSimulation {
+    selected: boolean;
+}
+
 export const Container = styled.div`
     z-index: 99;
 `
@@ -152,6 +156,16 @@ export const BoxDescription = styled.span`
 export const BoxDescriptionSimulation = styled.div`
     width: 600px;
     display: flex;
+    flex-direction: column;
+
+    div {
+        width: 100%;
+        display: flex;
+    }
+
+    @media (max-width: 768px) {
+        width: 90%;
+    }
 `
 
 export const BoxSimulationListItens = styled.div`
@@ -220,4 +234,17 @@ export const BoxImage = styled.img`
     width: 280px;
     height: 280px;
     margin: auto;
+`
+
+export const ButtonTabSimulation = styled.div<IButtonTabSimulation>`
+    flex: 1;
+    background: lightgray;
+    border-radius: 0;
+
+
+    ${props => !!props.selected && css`
+        background-color: gray;
+        color: #fff;
+    `}
+
 `
